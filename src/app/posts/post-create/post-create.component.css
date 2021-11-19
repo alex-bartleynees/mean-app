@@ -3,6 +3,10 @@ textarea {
   width: 100%;
 }
 
+button {
+  margin-top: 1rem;
+}
+
 :host {
   margin-top: 1rem;
   display: block;
