@@ -80,7 +80,6 @@ export class PostCreateComponent implements OnInit {
     this.isLoading = true;
 
     if (this.mode === 'edit') {
-      console.log(this.form.value.image);
       this.postService.updatePost(
         this.postId,
         this.form.value.title,
