@@ -5,9 +5,8 @@ import { map } from 'rxjs/operators';
 import { Post } from '../interfaces/post';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
-import { environment } from 'src/environments/environment';
 
-const BACKEND_URL = environment.apiUrl + 'posts';
+const BACKEND_URL = `${process.env.API_URL}` + 'posts';
 
 @Injectable({
   providedIn: 'root',

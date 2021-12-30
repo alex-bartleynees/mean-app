@@ -3,9 +3,8 @@ import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { AuthData } from '../interfaces/auth-data';
-import { environment } from 'src/environments/environment';
 
-const BACKEND_URL = environment.apiUrl + 'user';
+const BACKEND_URL = `${process.env.API_URL}` + 'user';
 
 @Injectable({
   providedIn: 'root',
