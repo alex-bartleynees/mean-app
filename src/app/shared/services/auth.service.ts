@@ -8,9 +8,9 @@ import { AuthData } from '../interfaces/auth-data';
   providedIn: 'root',
 })
 export class AuthService {
+  authStatusListener = new Subject<boolean>();
   private token: string;
   private isAuthenticated = false;
-  private authStatusListener = new Subject<boolean>();
   private tokenTimer: ReturnType<typeof setTimeout>;
   private userId: string;
 

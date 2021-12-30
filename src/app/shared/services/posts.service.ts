@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Post } from '../interfaces/post';
 import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,11 @@ export class PostsService {
   posts: Post[] = [];
   private postsUpdated = new Subject<{ posts: Post[]; postCount: number }>();
 
-  constructor(private httpClient: HttpClient, private router: Router) {}
+  constructor(
+    private httpClient: HttpClient,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   getPosts(postsPerPage: number, currentPage: number) {
     const queryParams = `?pagesize=${postsPerPage}&page=${currentPage}`;
@@ -93,9 +98,14 @@ export class PostsService {
     }
     this.httpClient
       .put('http://localhost:3000/api/posts/' + id, postData)
-      .subscribe(() => {
-        this.router.navigate(['/']);
-      });
+      .subscribe(
+        () => {
+          this.router.navigate(['/']);
+        },
+        (error) => {
+          this.authService.authStatusListener.next(false);
+        }
+      );
   }
 
   deletePost(postId: string) {
