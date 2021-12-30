@@ -29,6 +29,7 @@ export class PostsService {
                 content: post.content,
                 id: post._id,
                 imagePath: post.imagePath,
+                creator: post.creator,
               };
             }),
             maxposts: postData.maxPosts,
@@ -87,6 +88,7 @@ export class PostsService {
         title: title,
         content: content,
         imagePath: image,
+        creator: null,
       };
     }
     this.httpClient

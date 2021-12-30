@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -9,10 +10,21 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
   isLoading = false;
+  subscription: Subscription;
 
   constructor(public authService: AuthService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.subscription = this.authService
+      .getAuthStatusListener()
+      .subscribe((authStatus) => {
+        this.isLoading = authStatus;
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
   onLogin(form: NgForm) {
     if (form.invalid) {
