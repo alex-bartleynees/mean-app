@@ -1,3 +1,7 @@
 [[redirects]]
-/api/* http://nodeposts-env.eba-bqp3uqyx.us-east-2.elasticbeanstalk.com/api/:splat 200
+from = "/api/*
+to = "http://nodeposts-env.eba-bqp3uqyx.us-east-2.elasticbeanstalk.com/api/:splat"
+status = 200
+force = true
+
 
