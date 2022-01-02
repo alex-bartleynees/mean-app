@@ -76,7 +76,7 @@ export class PostsService {
       title: string;
       content: string;
       imagePath: string;
-    }>(`${BACKEND_URL}${id}`);
+    }>(`${BACKEND_URL}/${id}`);
   }
 
   updatePost(id: string, title: string, content: string, image: File | string) {
